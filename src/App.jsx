@@ -27,6 +27,8 @@ function App() {
 // any chnages to that state. will cause it to re-render anything related to that state
 // props: we use this pass information from the parent to the child.
 // state can hold more complex things such as arrays. see below we have a text and a boolean
+// react has in built hooks and one of them is called use state. one of the functions is set
+// when we use useState, we have to define the initial 'todos' and then we update from there
  
 //state
 const [todos, setTodos] = useState([
@@ -35,6 +37,7 @@ const [todos, setTodos] = useState([
     { text: "Build this app", isCompleted: false, }
   ]);
 
+// const
 
   // actions
   const addTodo = (text) => {
@@ -43,8 +46,8 @@ const [todos, setTodos] = useState([
   };
 
   const completeTodo = (index) => {
-    const newTodos = [...todos]; // whenever you take an array in jsx, we need to copy it to prevent rendering issues
-    newTodos[index].isCompleted = true;
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
   };
 
@@ -55,6 +58,24 @@ const [todos, setTodos] = useState([
     newTodos.splice(index, 1); //splice removes elements from an array
     setTodos(newTodos);
   };
+
+  // const updateRank = (index, newRanking) => {
+  //   const newTodos = [...todos];
+  //   newTodos[index].ranking = newRanking;
+  //   newTodos.sort((todoA, todoB) => {
+  //     return todoA.ranking - todoB.ranking;
+  //   });
+  //   setTodos(newTodos);
+  // }
+
+  // const markImportant = (index) => {
+  //   const newTodos = [...todos];
+  //   newTodos[index].important = !newTodos[index].important;
+  //   newTodos.sort((TodoA,TodoB)) => {
+  //     return TodoA.important === TodoB.important ? 0 : TodoA.important ? -
+  //   };
+  // set Todos(newTodos);
+  // };
 
   return (
     <div className="app">
@@ -67,12 +88,13 @@ const [todos, setTodos] = useState([
       index={index} // where the item is in an array. 
       completeTodo={completeTodo} //we are passing that function to the todoitem. it is because the state is inside this app file. 
       removeTodo={removeTodo}
+      updateRank={updateRank}
       />
     ))}
     <TodoForm addTodo={addTodo} />
     </div>
     </div>
   );
-}
+
 
 export default App;

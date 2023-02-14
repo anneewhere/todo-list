@@ -4,7 +4,7 @@ import "./TodoItem.css";
 
 //i am unsure what is happening here...
 function TodoItem(props) {
-    const { todo, index, completeTodo, removeTodo } = props;
+    const { todo, index, completeTodo, removeTodo, updateRank } = props;
     //in our function TodoItem, we pass a variable called props. our props are the "todo"
    
    
@@ -15,6 +15,7 @@ function TodoItem(props) {
     <div>
         <button onClick={() => completeTodo(index)}>Complete</button>
         <button onClick={() => removeTodo(index)}>x</button>
+        <select onChange={(event) => updateRank(index, event.target.value)}></select>
     </div>
     </div>//this is telling us that we are returning this in our function
 )};
